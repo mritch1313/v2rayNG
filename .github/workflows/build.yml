@@ -32,15 +32,15 @@ jobs:
           mkdir -p V2rayNG/app/libs
           curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
 
-      - name: Build Fast Release APK
-        # Пробуем собрать Fdroid-версию (она точно работает)
-        run: ./gradlew assembleFdroidRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
+      - name: Build Fast Signed APK
+        # Собираем Debug-версию: она автоматически подпишется ключом и без проблем встанет на телефон
+        run: ./gradlew assembleFdroidDebug -x test -x lint
         working-directory: ./V2rayNG
 
       - name: Isolate Compiled APKs
         run: |
           mkdir -p ready-apks
-          echo "=== ИЩЕМ APK ВО ВСЕЙ ПАПКЕ BUILD ==="
+          echo "=== ИЩЕМ ГОТОВЫЙ ПОДПИСАННЫЙ APK ==="
           find V2rayNG/app/build -name "*.apk" -type f
           echo "=== КОПИРУЕМ ==="
           find V2rayNG/app/build -name "*.apk" -type f -exec cp -v {} ready-apks/ \;
@@ -54,7 +54,7 @@ jobs:
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: v2rayNG-fast-release
+          name: v2rayNG-fast-debug
           path: ready-apks/*.apk
 
       - name: Create GitHub Release
