@@ -1,6 +1,10 @@
 name: Fast Build v2rayNG Fork
 on: [push, workflow_dispatch]
 
+# Даем права на запись, чтобы экшен мог создавать релизы
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,8 +38,19 @@ jobs:
         run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
         working-directory: ./V2rayNG
 
-      - name: Upload APK
+      - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: v2rayNG-fast-release
           path: V2rayNG/app/build/outputs/apk/release/*.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Auto-Build v1.0.${{ github.run_number }}
+          draft: false
+          prerelease: false
+          files: V2rayNG/app/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
