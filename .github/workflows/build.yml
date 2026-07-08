@@ -1,7 +1,6 @@
 name: Fast Build v2rayNG Fork
 on: [push, workflow_dispatch]
 
-# Даем железные права на запись для создания релизов
 permissions:
   contents: write
 
@@ -34,22 +33,24 @@ jobs:
           curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
 
       - name: Build Fast Release APK
-        # Собираем только F-Droid версию под arm64 процессор (твоего Infinix) — это экономит кучу времени
-        run: ./gradlew assembleFdroidRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
+        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
         working-directory: ./V2rayNG
 
-      # Вот тут теперь всё максимально надёжно и изолированно
-      - name: Find and Isolate Compiled APKs
+      # Копируем APK в чистую папку + проверка
+      - name: Isolate Compiled APKs
         run: |
           mkdir -p ready-apks
-          echo "=== ШАГ 1: ИЩЕМ APK ВНУТРИ ПАПКИ СБОРКИ ==="
-          find V2rayNG/app/build/ -name "*.apk"
+          find V2rayNG/app/build/outputs/ -name "*.apk" -exec cp -v {} ready-apks/ \;
+          echo "=== НАЙДЕНЫ APK ФАЙЛЫ ==="
+          ls -la ready-apks/
           
-          echo "=== ШАГ 2: КОПИРУЕМ НАЙДЕННОЕ В ready-apks ==="
-          find V2rayNG/app/build/ -name "*.apk" -exec cp {} ready-apks/ \;
-          
-          echo "=== ШАГ 3: ПРОВЕРЯЕМ РЕЗУЛЬТАТ В ready-apks ==="
-          ls -l ready-apks
+          # Проверка: если папка пуста — останавливаем сборку
+          if [ -z "$(ls -A ready-apks/)" ]; then
+            echo "❌ ОШИБКА: APK не найдены!"
+            exit 1
+          else
+            echo "✅ APK успешно скопированы"
+          fi
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
@@ -61,9 +62,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: Auto-Build v1.0.${{ github.run_number }}
+          name: "v2rayNG Auto-Build #${{ github.run_number }}"
           draft: false
           prerelease: false
+          generate_release_notes: true  # автоматически добавит список изменений
           files: ready-apks/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
