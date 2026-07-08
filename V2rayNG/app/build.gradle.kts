@@ -53,10 +53,7 @@ android {
         create("playstore") {
     dimension = "distribution"
     buildConfigField("String", "DISTRIBUTION", "\"Play Store\"")
-        }
-        create("playstore") {
-            dimension = "distribution"
-            buildConfigField("String", "DISTRIBUTION", "\"Play Store\"")
+    
         }
     }
 
