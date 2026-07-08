@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: v2rayNG-fast-release
-          path: V2rayNG/app/build/outputs/apk/release/*.apk
+          path: V2rayNG/app/build/outputs/apk/**/*.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -51,6 +51,6 @@ jobs:
           name: Auto-Build v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
-          files: V2rayNG/app/build/outputs/apk/release/*.apk
+          files: V2rayNG/app/build/outputs/apk/**/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
