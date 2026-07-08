@@ -1,6 +1,7 @@
 name: Fast Build v2rayNG Fork
 on: [push, workflow_dispatch]
 
+# Даем железные права на запись для создания релизов
 permissions:
   contents: write
 
@@ -33,15 +34,21 @@ jobs:
           curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
 
       - name: Build Fast Release APK
-        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
+        # Собираем только F-Droid версию под arm64 процессор (твоего Infinix) — это экономит кучу времени
+        run: ./gradlew assembleFdroidRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
         working-directory: ./V2rayNG
 
-      # Создаем новую чистую папку и копируем туда APK
-      - name: Isolate Compiled APKs
+      # Вот тут теперь всё максимально надёжно и изолированно
+      - name: Find and Isolate Compiled APKs
         run: |
           mkdir -p ready-apks
-          find V2rayNG/app/build/outputs/ -name "*.apk" -exec cp {} ready-apks/ \;
-          echo "Файлы в папке ready-apks:"
+          echo "=== ШАГ 1: ИЩЕМ APK ВНУТРИ ПАПКИ СБОРКИ ==="
+          find V2rayNG/app/build/ -name "*.apk"
+          
+          echo "=== ШАГ 2: КОПИРУЕМ НАЙДЕННОЕ В ready-apks ==="
+          find V2rayNG/app/build/ -name "*.apk" -exec cp {} ready-apks/ \;
+          
+          echo "=== ШАГ 3: ПРОВЕРЯЕМ РЕЗУЛЬТАТ В ready-apks ==="
           ls -l ready-apks
 
       - name: Upload APK to Artifacts
