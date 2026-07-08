@@ -34,8 +34,7 @@ jobs:
 
       - name: Build Fast Signed APK
         # Собираем Debug-версию: она автоматически подпишется ключом и без проблем встанет на телефон
-        run: ./gradlew assembleFdroidDebug -x test -x lint
-        working-directory: ./V2rayNG
+        run: ./gradlew assemblePlaystoreDebug -x test -x lint
 
       - name: Isolate Compiled APKs
         run: |
