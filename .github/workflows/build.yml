@@ -24,6 +24,11 @@ jobs:
         run: chmod +x ./gradlew
         working-directory: ./V2rayNG
 
+      - name: Fetch Precompiled Core (libv2ray.aar)
+        run: |
+          mkdir -p V2rayNG/app/libs
+          curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
+
       - name: Build Fast Release APK
         # -Pandroid.injected.build.abi собирает ТОЛЬКО под arm64, срезая 70% времени сборки
         run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
