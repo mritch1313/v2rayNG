@@ -33,23 +33,22 @@ jobs:
           curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
 
       - name: Build Fast Release APK
-        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
+        # Пробуем собрать Fdroid-версию (она точно работает)
+        run: ./gradlew assembleFdroidRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
         working-directory: ./V2rayNG
 
-      # Копируем APK в чистую папку + проверка
       - name: Isolate Compiled APKs
         run: |
           mkdir -p ready-apks
-          find V2rayNG/app/build/outputs/ -name "*.apk" -exec cp -v {} ready-apks/ \;
-          echo "=== НАЙДЕНЫ APK ФАЙЛЫ ==="
+          echo "=== ИЩЕМ APK ВО ВСЕЙ ПАПКЕ BUILD ==="
+          find V2rayNG/app/build -name "*.apk" -type f
+          echo "=== КОПИРУЕМ ==="
+          find V2rayNG/app/build -name "*.apk" -type f -exec cp -v {} ready-apks/ \;
+          echo "=== ПРОВЕРКА ==="
           ls -la ready-apks/
-          
-          # Проверка: если папка пуста — останавливаем сборку
           if [ -z "$(ls -A ready-apks/)" ]; then
             echo "❌ ОШИБКА: APK не найдены!"
             exit 1
-          else
-            echo "✅ APK успешно скопированы"
           fi
 
       - name: Upload APK to Artifacts
@@ -65,7 +64,7 @@ jobs:
           name: "v2rayNG Auto-Build #${{ github.run_number }}"
           draft: false
           prerelease: false
-          generate_release_notes: true  # автоматически добавит список изменений
+          generate_release_notes: true
           files: ready-apks/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
