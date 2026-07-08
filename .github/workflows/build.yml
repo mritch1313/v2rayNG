@@ -1,7 +1,6 @@
 name: Fast Build v2rayNG Fork
 on: [push, workflow_dispatch]
 
-# Даем права на запись, чтобы экшен мог создавать релизы
 permissions:
   contents: write
 
@@ -34,15 +33,22 @@ jobs:
           curl -L -o V2rayNG/app/libs/libv2ray.aar https://github.com/2dust/AndroidLibXrayLite/releases/latest/download/libv2ray.aar
 
       - name: Build Fast Release APK
-        # -Pandroid.injected.build.abi собирает ТОЛЬКО под arm64, срезая 70% времени сборки
         run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -x test -x lint
         working-directory: ./V2rayNG
+
+      # Создаем новую чистую папку и копируем туда APK
+      - name: Isolate Compiled APKs
+        run: |
+          mkdir -p ready-apks
+          find V2rayNG/app/build/outputs/ -name "*.apk" -exec cp {} ready-apks/ \;
+          echo "Файлы в папке ready-apks:"
+          ls -l ready-apks
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: v2rayNG-fast-release
-          path: V2rayNG/app/build/outputs/apk/**/*.apk
+          path: ready-apks/*.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -51,6 +57,6 @@ jobs:
           name: Auto-Build v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
-          files: V2rayNG/app/build/outputs/apk/**/*.apk
+          files: ready-apks/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
