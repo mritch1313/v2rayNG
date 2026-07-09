@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:marginStart="12dp">
+            android:layout_marginStart="120">
 
             <TextView
                 android:id="@+id/header_title"
@@ -50,7 +50,7 @@
                 android:text="приватный"
                 android:textSize="14sp"
                 android:textColor="@color/text_secondary"
-                android:marginTop="4dp" />
+                android:layout_marginTop="4dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -127,7 +127,7 @@
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:marginStart="8dp" />
+                            android:layout_marginStart="8dp" />
                     </LinearLayout>
 
                     <TextView
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:marginTop="8dp">
+                        android:lavyout_marginTop="8dp">
 
                         <View
                             android:layout_width="8dp"
@@ -160,7 +160,7 @@
                             android:text="Netherlands Server • 214ms"
                             android:textSize="13sp"
                             android:textColor="@color/text_primary"
-                            android:marginStart="8dp" />
+                            android:layout_marginStart="8dp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -170,14 +170,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:marginTop="20dp">
+                android:lavyout_marginTop="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:marginBottom="8dp">
+                    android:lavyout_marginBottom"8dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -193,7 +193,7 @@
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
-                        android:marginStart="8dp" />
+                        android:layout_marginStart="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -234,7 +234,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:marginTop="4dp" />
+                                android:lavyout_marginTop="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -277,7 +277,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:marginTop="4dp" />
+                                android:lavyout_marginTop="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
