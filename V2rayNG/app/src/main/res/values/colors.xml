@@ -52,4 +52,8 @@
     <color name="md_theme_shadow">#000000</color>
     <color name="md_theme_surfaceTint">#000000</color>
     <color name="md_theme_scrim">#000000</color>
+
+    <color name="color_card_bg_new">#1E293B</color>
+    <color name="color_card_border_new">#334155</color>
+    <color name="color_primary_new">#3B82F6</color>
 </resources>
