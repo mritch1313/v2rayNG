@@ -82,8 +82,8 @@
                 <!-- Inner Blue Circle with FAB -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_play_24dp"
