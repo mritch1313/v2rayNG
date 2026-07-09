@@ -314,7 +314,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0.0"
-                                    android:textColor="white"
+                                    android:textColor="#FFFFFF"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
                                     android:layout_marginTop="4dp" />
@@ -359,7 +359,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0.0"
-                                    android:textColor="white"
+                                    android:textColor="#FFFFFF"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
                                     android:layout_marginTop="4dp" />
@@ -386,7 +386,7 @@
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="end"
                     android:backgroundTint="#1C2A45"
-                    android:textColor="white"
+                    android:textColor="#FFFFFF"
                     android:elevation="0dp" />
 
                 <LinearLayout
