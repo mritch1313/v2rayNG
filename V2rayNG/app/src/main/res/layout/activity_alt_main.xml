@@ -8,103 +8,130 @@
     android:background="@color/color_background"
     tools:context=".ui.AltMainActivity">
 
-    <!-- Header Section -->
+    <!-- ============ Header Section ============ -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="14dp"
         android:gravity="center_vertical"
         android:background="@color/color_background">
 
         <ImageView
             android:id="@+id/header_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_lock"
             android:contentDescription="@string/app_name"
             android:scaleType="centerInside"
-            android:tint="@color/color_primary" />
+            app:tint="@color/color_primary" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginStart="120dp">
+            android:gravity="center"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ALT VPN"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/text_primary"
+                android:letterSpacing="0.05" />
 
             <TextView
                 android:id="@+id/header_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="приватный"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/text_secondary"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="2dp"
+                android:alpha="0.7" />
         </LinearLayout>
+
+        <!-- Пустой View для симметрии -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
     </LinearLayout>
 
-    <!-- Main Content Area -->
+    <!-- Тонкий разделитель -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/card_background_dark"
+        android:alpha="0.3" />
+
+    <!-- ============ Main Content Area ============ -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp">
 
-            <!-- Central Circle Button with Play/Stop Icon -->
+            <!-- ======== Central Circle Button ======== -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="240dp"
                 android:layout_gravity="center">
 
-                <!-- Outer Circle (Gradient Border) -->
+                <!-- Внешнее свечение / тень -->
                 <View
-                    android:layout_width="280dp"
-                    android:layout_height="280dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/circle_border" />
+                    android:background="@drawable/circle_border"
+                    android:alpha="0.6" />
 
-                <!-- Inner Blue Circle with FAB -->
+                <!-- Кнопка запуска — КОМПАКТНЕЕ -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_play_24dp"
                     android:backgroundTint="@color/color_primary"
-                    app:fabSize="auto" />
+                    app:fabSize="auto"
+                    app:elevation="8dp"
+                    app:borderWidth="0dp"
+                    app:fabCustomSize="88dp"
+                    app:maxImageSize="36dp" />
             </FrameLayout>
 
-            <!-- Server Info Card -->
+            <!-- ======== Server Info Card ======== -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="14dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -113,8 +140,8 @@
                         android:gravity="center_vertical">
 
                         <View
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
                             android:background="@drawable/circle_dot"
                             android:backgroundTint="@color/color_primary" />
 
@@ -124,10 +151,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Luna VPN — Netherlands"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"
-                            android:layout_marginStart="8dp" />
+                            android:layout_marginStart="10dp" />
                     </LinearLayout>
 
                     <TextView
@@ -135,9 +162,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VLESS • защищённый туннель"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/text_secondary"
-                        android:layout_marginTop="4dp" />
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="20dp"
+                        android:alpha="0.8" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -147,10 +176,11 @@
                         android:layout_marginTop="8dp">
 
                         <View
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
                             android:background="@drawable/circle_dot"
-                            android:backgroundTint="@color/color_primary" />
+                            android:backgroundTint="@color/color_primary"
+                            android:alpha="0.7" />
 
                         <TextView
                             android:id="@+id/server_country_text"
@@ -158,188 +188,227 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Netherlands Server • 214ms"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:textColor="@color/text_primary"
-                            android:layout_marginStart="8dp" />
+                            android:layout_marginStart="10dp"
+                            android:alpha="0.8" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Statistics Section -->
+            <!-- ======== Statistics Section ======== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="16dp">
 
+                <!-- Заголовок статистики -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="4dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/ic_chart"
                         android:contentDescription="Statistics"
-                        android:tint="@color/text_primary" />
+                        app:tint="@color/text_secondary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="СТАТИСТИКА"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginStart="8dp" />
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginStart="6dp"
+                        android:letterSpacing="0.1"
+                        android:alpha="0.8" />
                 </LinearLayout>
 
+                <!-- Карточки скачать / загрузить -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:spacing="8dp">
+                    android:orientation="horizontal">
 
-                    <!-- Download Speed -->
+                    <!-- ↓ СКАЧАТЬ -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
                         app:cardBackgroundColor="@color/card_background_dark"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp">
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="3dp"
+                        app:strokeWidth="0dp"
+                        android:alpha="0.9">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="12dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="10dp"
                             android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="↓ СКАЧАТЬ"
-                                android:textSize="10sp"
+                                android:textSize="9sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/text_secondary" />
+                                android:textColor="@color/text_secondary"
+                                android:letterSpacing="0.08"
+                                android:alpha="0.7" />
 
                             <TextView
                                 android:id="@+id/download_speed_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0.0"
-                                android:textSize="20sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mb/s"
-                                android:textSize="11sp"
-                                android:textColor="@color/text_secondary" />
+                                android:textSize="10sp"
+                                android:textColor="@color/text_secondary"
+                                android:alpha="0.6" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Upload Speed -->
+                    <!-- ↑ ЗАГРУЗИТЬ -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="6dp"
                         app:cardBackgroundColor="@color/card_background_dark"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp">
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="3dp"
+                        app:strokeWidth="0dp"
+                        android:alpha="0.9">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="12dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="10dp"
                             android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="↑ ЗАГРУЗИТЬ"
-                                android:textSize="10sp"
+                                android:textSize="9sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/text_secondary" />
+                                android:textColor="@color/text_secondary"
+                                android:letterSpacing="0.08"
+                                android:alpha="0.7" />
 
                             <TextView
                                 android:id="@+id/upload_speed_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0.0"
-                                android:textSize="20sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mb/s"
-                                android:textSize="11sp"
-                                android:textColor="@color/text_secondary" />
+                                android:textSize="10sp"
+                                android:textColor="@color/text_secondary"
+                                android:alpha="0.6" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- View All Servers Button -->
+            <!-- ======== View All Servers Button ======== -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_all_servers_btn"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="14dp"
                 android:text="Смотреть все серверы"
-                android:textSize="14sp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"
                 app:icon="@drawable/ic_arrow_right"
                 app:iconGravity="end"
-                app:cornerRadius="12dp"
+                app:iconSize="18dp"
+                app:cornerRadius="14dp"
                 android:backgroundTint="@color/card_background_dark"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/text_primary"
+                android:alpha="0.92"
+                android:stateListAnimator="@null"
+                app:elevation="2dp" />
 
-            <!-- Mini Buttons (Search & Edit) -->
+            <!-- ======== Mini Buttons (Search & Edit) ======== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:spacing="8dp"
                 android:layout_marginTop="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/search_btn"
                     android:layout_width="0dp"
-                    android:layout_height="56dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
                     android:text="Начать искать"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/ic_search"
+                    app:iconSize="16dp"
+                    app:iconPadding="4dp"
                     app:cornerRadius="12dp"
                     android:backgroundTint="@color/card_background_dark"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    android:alpha="0.88"
+                    android:stateListAnimator="@null"
+                    app:elevation="1dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/edit_btn"
                     android:layout_width="0dp"
-                    android:layout_height="56dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:layout_marginStart="5dp"
                     android:text="Редактировать"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
                     app:icon="@drawable/ic_edit"
+                    app:iconSize="16dp"
+                    app:iconPadding="4dp"
                     app:cornerRadius="12dp"
                     android:backgroundTint="@color/card_background_dark"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    android:alpha="0.88"
+                    android:stateListAnimator="@null"
+                    app:elevation="1dp" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
+    <!-- ============ Bottom Navigation ============ -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -348,6 +417,7 @@
         app:menu="@menu/menu_alt_bottom_nav"
         app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/bottom_nav_color"
-        app:itemIconTint="@color/bottom_nav_color" />
+        app:itemIconTint="@color/bottom_nav_color"
+        app:elevation="8dp" />
 
 </LinearLayout>
