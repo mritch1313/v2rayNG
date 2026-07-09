@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginStart="120">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:id="@+id/header_title"
@@ -137,14 +137,14 @@
                         android:text="VLESS • защищённый туннель"
                         android:textSize="12sp"
                         android:textColor="@color/text_secondary"
-                        android:marginTop="4dp" />
+                        android:layout_marginTop="4dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:lavyout_marginTop="8dp">
+                        android:layout_marginTop="8dp">
 
                         <View
                             android:layout_width="8dp"
@@ -234,7 +234,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:lavyout_marginTop="4dp" />
+                                android:layout_marginTop="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -277,7 +277,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"
-                                android:lavyout_marginTop="4dp" />
+                                android:layout_marginTop="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
