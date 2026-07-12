@@ -1,4 +1,4 @@
-xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -388,7 +388,7 @@ xml version="1.0" encoding="utf-8"?>
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Кнопка "Смотреть все серверы" — 50dp, marginTop 5dp (поднято на 1.6×) -->
+            <!-- Кнопка "Смотреть все серверы" — РАЗДВИНУТО ПО Y: marginTop 5dp → 20dp -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_all_servers_btn"
                 android:layout_width="match_parent"
@@ -396,7 +396,7 @@ xml version="1.0" encoding="utf-8"?>
                 android:minHeight="0dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:text="Смотреть все серверы"
                 android:textSize="11sp"
                 app:cornerRadius="12dp"
@@ -408,12 +408,12 @@ xml version="1.0" encoding="utf-8"?>
                 android:textColor="#FFFFFF"
                 android:elevation="0dp" />
 
-            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 7dp, кнопки расставлены по вертикали: зазор ~5dp (×1.25), обе сдвинуты вверх -->
+            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — РАЗДВИНУТО ПО Y: marginTop 7dp → 20dp -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp">
+                android:layout_marginTop="20dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/search_btn"
@@ -424,7 +424,7 @@ xml version="1.0" encoding="utf-8"?>
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:layout_marginEnd="3dp"
-                    android:layout_marginTop="-4dp"
+                    android:layout_marginTop="0dp"
                     android:text="Начать искать"
                     android:textSize="10sp"
                     app:cornerRadius="11dp"
@@ -443,7 +443,7 @@ xml version="1.0" encoding="utf-8"?>
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
                     android:layout_marginStart="3dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="0dp"
                     android:text="Редактировать"
                     android:textSize="10sp"
                     app:cornerRadius="11dp"
@@ -454,10 +454,10 @@ xml version="1.0" encoding="utf-8"?>
                     app:iconPadding="3dp" />
             </LinearLayout>
 
-            <!-- Нижний отступ перед BottomNavigation -->
+            <!-- Нижний отступ перед BottomNavigation — РАЗДВИНУТО ПО Y: 16dp → 18dp -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="16dp" />
+                android:layout_height="18dp" />
 
         </LinearLayout>
 
@@ -465,6 +465,7 @@ xml version="1.0" encoding="utf-8"?>
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             android:background="#131D32"
             app:menu="@menu/menu_alt_bottom_nav"
             app:itemTextColor="@color/bottom_nav_color"
