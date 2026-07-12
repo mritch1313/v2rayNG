@@ -108,12 +108,12 @@
             android:gravity="top">
 
             <!-- ======== Central Circle с LED кольцами ======== -->
-            <!-- Весь контейнер (кольца + свечение + FAB) сдвинут вниз marginTop=20dp (подняли в 2х, потом опустили на 0.7×) -->
+            <!-- Весь контейнер (кольца + свечение + FAB) опущен ниже: 20dp → 30dp (×1.5) -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="30dp">
 
                 <!-- Внешнее темное кольцо с обводкой (180dp) -->
                 <View
@@ -154,10 +154,11 @@
             </FrameLayout>
 
             <!-- ======== Server Card - Glass + LED stroke ======== -->
+            <!-- marginTop 24dp → 22dp (поднято на 1.1×) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:cardBackgroundColor="#16213A"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
@@ -240,12 +241,12 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- ======== Statistic ======== -->
-            <!-- marginTop 12dp → 6dp: блок «СТАТИСТИКА» и всё ниже подтянуто в 2× выше -->
+            <!-- marginTop 6dp → 4dp (поднято на 1.5×) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="6dp">
+                android:layout_marginTop="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -387,7 +388,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Кнопка "Смотреть все серверы" — 50dp, marginTop 8dp (поднято в 2×) -->
+            <!-- Кнопка "Смотреть все серверы" — 50dp, marginTop 5dp (поднято на 1.6×) -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_all_servers_btn"
                 android:layout_width="match_parent"
@@ -395,7 +396,7 @@
                 android:minHeight="0dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text="Смотреть все серверы"
                 android:textSize="11sp"
                 app:cornerRadius="12dp"
@@ -407,12 +408,12 @@
                 android:textColor="#FFFFFF"
                 android:elevation="0dp" />
 
-            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 6dp (поднято в 2×, ближе к "Смотреть все") -->
+            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 8dp (опущены на 0.4×) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="6dp">
+                android:layout_marginTop="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/search_btn"
