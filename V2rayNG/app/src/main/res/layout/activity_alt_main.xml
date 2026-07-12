@@ -108,33 +108,35 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="24dp"
+                android:paddingTop="8dp">
 
                 <!-- ======== Central Circle с LED кольцами ======== -->
+                <!-- Контейнер увеличен: 220dp → 280dp для комфортного размера колец -->
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="280dp"
                     android:layout_gravity="center">
 
-                    <!-- Внешнее темное кольцо с обводкой (уменьшено в 2 раза: 260dp → 130dp) -->
+                    <!-- Внешнее темное кольцо с обводкой (130dp → 180dp, комфортнее для FAB 36dp) -->
                     <View
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
                         android:layout_gravity="center"
                         android:background="@drawable/bg_dark_circle" />
 
-                    <!-- Тонкое синее свечение-кольцо поверх (уменьшено в 2 раза: 260dp → 130dp) -->
+                    <!-- Тонкое синее свечение-кольцо поверх (130dp → 180dp) -->
                     <View
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_border"
                         android:alpha="0.8" />
 
-                    <!-- Свечение ПОД кнопкой (уменьшено в 2 раза: 66dp → 33dp) -->
+                    <!-- Свечение ПОД кнопкой (33dp → 48dp, пропорционально FAB) -->
                     <View
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_gravity="center"
                         android:background="@drawable/bg_fab_glow"
                         android:backgroundTint="#123B73"
@@ -155,10 +157,11 @@
                 </FrameLayout>
 
                 <!-- ======== Server Card - Glass + LED stroke ======== -->
+                <!-- Отступ сверху для распределения по высоте -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="24dp"
                     app:cardBackgroundColor="#16213A"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
@@ -245,7 +248,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="24dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -253,7 +256,7 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:paddingStart="0dp"
-                        android:layout_marginBottom="6dp">
+                        android:layout_marginBottom="10dp">
 
                         <ImageView
                             android:layout_width="16dp"
@@ -277,7 +280,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <!-- Кнопка/Карточка "СКАЧАТЬ" — высота увеличена в 1.5× (paddingVertical 5dp → 12dp) -->
+                        <!-- Кнопка/Карточка "СКАЧАТЬ" — paddingVertical 12dp (комфортная высота) -->
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -331,7 +334,7 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Кнопка/Карточка "ЗАГРУЗИТЬ" — высота увеличена в 1.5× (paddingVertical 5dp → 12dp) -->
+                        <!-- Кнопка/Карточка "ЗАГРУЗИТЬ" — paddingVertical 12dp -->
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -387,15 +390,15 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Кнопка "Смотреть все серверы" — высота 40dp → 60dp (1.5×) -->
+                <!-- Кнопка "Смотреть все серверы" — высота 60dp → 50dp (коэф. ~1.25) -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/view_all_servers_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:minHeight="0dp"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="24dp"
                     android:text="Смотреть все серверы"
                     android:textSize="11sp"
                     app:cornerRadius="12dp"
@@ -407,13 +410,14 @@
                     android:textColor="#FFFFFF"
                     android:elevation="0dp" />
 
+                <!-- Нижние кнопки: "Начать искать" и "Редактировать" -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="20dp">
 
-                    <!-- Кнопка "Начать искать" — высота 30dp → 45dp (1.5×) -->
+                    <!-- Кнопка "Начать искать" — высота 45dp -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/search_btn"
                         android:layout_width="0dp"
@@ -432,7 +436,7 @@
                         app:iconSize="14dp"
                         app:iconPadding="3dp" />
 
-                    <!-- Кнопка "Редактировать" — высота 30dp → 45dp (1.5×) -->
+                    <!-- Кнопка "Редактировать" — высота 45dp -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/edit_btn"
                         android:layout_width="0dp"
@@ -451,6 +455,12 @@
                         app:iconSize="14dp"
                         app:iconPadding="3dp" />
                 </LinearLayout>
+
+                <!-- Нижний отступ для скролла до BottomNavigation -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
             </LinearLayout>
         </ScrollView>
 
