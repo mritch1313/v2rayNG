@@ -142,12 +142,13 @@
                         android:backgroundTint="#123B73"
                         android:alpha="0.35" />
 
-                    <!-- Кнопка FAB (остаётся 36dp, иконка 16dp) -->
+                    <!-- Кнопка FAB (остаётся 36dp, иконка 16dp) — сдвинута чуть ниже -->
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
                         android:src="@drawable/ic_play_24dp"
                         android:backgroundTint="#123B73"
                         app:fabCustomSize="36dp"
@@ -390,7 +391,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Кнопка "Смотреть все серверы" — высота 60dp → 50dp (коэф. ~1.25) -->
+                <!-- Кнопка "Смотреть все серверы" — высота 50dp, marginTop уменьшен 24dp → 16dp -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/view_all_servers_btn"
                     android:layout_width="match_parent"
@@ -398,7 +399,7 @@
                     android:minHeight="0dp"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:text="Смотреть все серверы"
                     android:textSize="11sp"
                     app:cornerRadius="12dp"
@@ -410,12 +411,12 @@
                     android:textColor="#FFFFFF"
                     android:elevation="0dp" />
 
-                <!-- Нижние кнопки: "Начать искать" и "Редактировать" -->
+                <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 20dp → 12dp (ближе к "Смотреть все серверы") -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="12dp">
 
                     <!-- Кнопка "Начать искать" — высота 45dp -->
                     <com.google.android.material.button.MaterialButton
