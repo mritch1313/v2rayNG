@@ -103,7 +103,6 @@
             android:paddingTop="8dp"
             android:gravity="top">
 
-            <!-- FAB - НЕ ТРОГАЕМ, как просил -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
@@ -144,11 +143,11 @@
                     app:borderWidth="0dp" />
             </FrameLayout>
 
-            <!-- Server Card - ПОДНЯТ ВВЕРХ: 22dp -> 10dp -->
+            <!-- Luna VPN Card - ПОДНЯТ ВВЕРХ в 1.3 раза: 10dp -> 7dp -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 app:cardBackgroundColor="#16213A"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
@@ -230,7 +229,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Statistic - ПОДНЯТ ВВЕРХ: 4dp -> 2dp -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -375,7 +373,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Смотреть все серверы - РАЗДВИНУТ ПО Y и ПОДНЯТ: было 5dp -> теперь 12dp -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_all_servers_btn"
                 android:layout_width="match_parent"
@@ -395,7 +392,6 @@
                 android:textColor="#FFFFFF"
                 android:elevation="0dp" />
 
-            <!-- Начать искать / Редактировать - ТЕПЕРЬ ВИДНЫ, выровнены и подняты: 7dp -> 10dp -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
