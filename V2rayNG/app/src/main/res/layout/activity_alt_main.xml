@@ -33,7 +33,7 @@
         android:alpha="0.35"
         android:background="@drawable/glow_blue_500" />
 
-    <!-- ============ ОСНОВНОЙ КОНТЕНТ ============ -->
+    <!-- ============ ОСНОВНОЙ КОНТЕНТ (без скролла — фиксирован на 720×1612) ============ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -96,374 +96,367 @@
             android:background="#1A2A45"
             android:alpha="0.5" />
 
-        <ScrollView
+        <!-- Контентная область — LinearLayout с weight=1, НЕ ScrollView -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fillViewport="true"
-            android:overScrollMode="never">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="24dp"
+            android:paddingTop="8dp"
+            android:gravity="top">
 
-            <LinearLayout
+            <!-- ======== Central Circle с LED кольцами ======== -->
+            <!-- Весь контейнер (кольца + свечение + FAB) сдвинут вниз marginTop=24dp -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp">
+
+                <!-- Внешнее темное кольцо с обводкой (180dp) -->
+                <View
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_dark_circle" />
+
+                <!-- Тонкое синее свечение-кольцо поверх (180dp) -->
+                <View
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_border"
+                    android:alpha="0.8" />
+
+                <!-- Свечение ПОД кнопкой (48dp) -->
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_fab_glow"
+                    android:backgroundTint="#123B73"
+                    android:alpha="0.35" />
+
+                <!-- Кнопка FAB (36dp, иконка 16dp) — внутри контейнера, без лишних отступов -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_play_24dp"
+                    android:backgroundTint="#123B73"
+                    app:fabCustomSize="36dp"
+                    app:maxImageSize="16dp"
+                    app:elevation="18dp"
+                    app:borderWidth="0dp" />
+            </FrameLayout>
+
+            <!-- ======== Server Card - Glass + LED stroke ======== -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingBottom="24dp"
-                android:paddingTop="8dp">
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="#16213A"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#123B73">
 
-                <!-- ======== Central Circle с LED кольцами ======== -->
-                <!-- Контейнер увеличен: 220dp → 280dp для комфортного размера колец -->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:layout_gravity="center">
-
-                    <!-- Внешнее темное кольцо с обводкой (130dp → 180dp, комфортнее для FAB 36dp) -->
-                    <View
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_dark_circle" />
-
-                    <!-- Тонкое синее свечение-кольцо поверх (130dp → 180dp) -->
-                    <View
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_border"
-                        android:alpha="0.8" />
-
-                    <!-- Свечение ПОД кнопкой (33dp → 48dp, пропорционально FAB) -->
-                    <View
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_fab_glow"
-                        android:backgroundTint="#123B73"
-                        android:alpha="0.35" />
-
-                    <!-- Кнопка FAB (остаётся 36dp, иконка 16dp) — сдвинута чуть ниже -->
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/fab"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        android:src="@drawable/ic_play_24dp"
-                        android:backgroundTint="#123B73"
-                        app:fabCustomSize="36dp"
-                        app:maxImageSize="16dp"
-                        app:elevation="18dp"
-                        app:borderWidth="0dp" />
-                </FrameLayout>
-
-                <!-- ======== Server Card - Glass + LED stroke ======== -->
-                <!-- Отступ сверху для распределения по высоте -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    app:cardBackgroundColor="#16213A"
-                    app:cardCornerRadius="14dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#123B73">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="12dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-
-                            <View
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:background="@drawable/circle_dot"
-                                android:backgroundTint="#123B73" />
-
-                            <TextView
-                                android:id="@+id/server_name_text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="8dp"
-                                android:text="Luna VPN — Netherlands"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="214ms"
-                                android:textSize="12sp"
-                                android:textColor="#7A8BB0" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/server_desc_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginStart="16dp"
-                            android:alpha="0.7"
-                            android:text="VLESS • защищённый туннель"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="11sp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-
-                            <View
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:background="@drawable/circle_dot"
-                                android:backgroundTint="#123B73"
-                                android:alpha="0.2" />
-
-                            <TextView
-                                android:id="@+id/server_country_text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="-14dp"
-                                android:text="Netherlands Server"
-                                android:textColor="#A0B0D0"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- ======== Statistic ======== -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="24dp">
+                    android:padding="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingStart="0dp"
-                        android:layout_marginBottom="10dp">
+                        android:gravity="center_vertical">
 
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:src="@drawable/ic_chart"
-                            app:tint="#6A7DA0" />
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/circle_dot"
+                            android:backgroundTint="#123B73" />
+
+                        <TextView
+                            android:id="@+id/server_name_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="Luna VPN — Netherlands"
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="СТАТИСТИКА"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:letterSpacing="0.1"
-                            android:textColor="#6A7DA0" />
+                            android:text="214ms"
+                            android:textSize="12sp"
+                            android:textColor="#7A8BB0" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/server_desc_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="16dp"
+                        android:alpha="0.7"
+                        android:text="VLESS • защищённый туннель"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
-                        <!-- Кнопка/Карточка "СКАЧАТЬ" — paddingVertical 12dp (комфортная высота) -->
-                        <com.google.android.material.card.MaterialCardView
+                        <View
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:background="@drawable/circle_dot"
+                            android:backgroundTint="#123B73"
+                            android:alpha="0.2" />
+
+                        <TextView
+                            android:id="@+id/server_country_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginEnd="6dp"
-                            app:cardBackgroundColor="#16213A"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="0dp"
-                            app:strokeWidth="1dp"
-                            app:strokeColor="#1F335A">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="start|center_vertical"
-                                android:orientation="vertical"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingVertical="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="↓ СКАЧАТЬ"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:textSize="8sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#6A7DA0" />
-
-                                <TextView
-                                    android:id="@+id/download_speed_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0.0"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:layout_marginTop="0dp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Mb/s"
-                                    android:textColor="#6A7DA0"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:textSize="8sp" />
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <!-- Кнопка/Карточка "ЗАГРУЗИТЬ" — paddingVertical 12dp -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="6dp"
-                            app:cardBackgroundColor="#16213A"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="0dp"
-                            app:strokeWidth="1dp"
-                            app:strokeColor="#1F335A">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="start|center_vertical"
-                                android:orientation="vertical"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingVertical="12dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="↑ ЗАГРУЗИТЬ"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:textSize="8sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#6A7DA0" />
-
-                                <TextView
-                                    android:id="@+id/upload_speed_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0.0"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:layout_marginTop="0dp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Mb/s"
-                                    android:textColor="#6A7DA0"
-                                    android:gravity="start"
-                                    android:textAlignment="viewStart"
-                                    android:textSize="8sp" />
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
+                            android:layout_marginStart="-14dp"
+                            android:text="Netherlands Server"
+                            android:textColor="#A0B0D0"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <!-- Кнопка "Смотреть все серверы" — высота 50dp, marginTop уменьшен 24dp → 16dp -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/view_all_servers_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:minHeight="0dp"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Смотреть все серверы"
-                    android:textSize="11sp"
-                    app:cornerRadius="12dp"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="end"
-                    app:iconSize="16dp"
-                    app:iconPadding="4dp"
-                    android:backgroundTint="#1C2A45"
-                    android:textColor="#FFFFFF"
-                    android:elevation="0dp" />
+            <!-- ======== Statistic ======== -->
+            <!-- marginTop уменьшен 24dp → 12dp: блок «СТАТИСТИКА» и всё ниже подтянуто вверх -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp">
 
-                <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 20dp → 12dp (ближе к "Смотреть все серверы") -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="12dp">
+                    android:gravity="center_vertical"
+                    android:paddingStart="0dp"
+                    android:layout_marginBottom="10dp">
 
-                    <!-- Кнопка "Начать искать" — высота 45dp -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/search_btn"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="45dp"
-                        android:minHeight="0dp"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Начать искать"
-                        android:textSize="10sp"
-                        app:cornerRadius="11dp"
-                        android:backgroundTint="#19243C"
-                        android:textColor="#A0B0D0"
-                        app:icon="@drawable/ic_search"
-                        app:iconSize="14dp"
-                        app:iconPadding="3dp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chart"
+                        app:tint="#6A7DA0" />
 
-                    <!-- Кнопка "Редактировать" — высота 45dp -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/edit_btn"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="45dp"
-                        android:minHeight="0dp"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:layout_marginStart="5dp"
-                        android:text="Редактировать"
-                        android:textSize="10sp"
-                        app:cornerRadius="11dp"
-                        android:backgroundTint="#19243C"
-                        android:textColor="#A0B0D0"
-                        app:icon="@drawable/ic_edit"
-                        app:iconSize="14dp"
-                        app:iconPadding="3dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="СТАТИСТИКА"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1"
+                        android:textColor="#6A7DA0" />
                 </LinearLayout>
 
-                <!-- Нижний отступ для скролла до BottomNavigation -->
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <!-- Карточка "СКАЧАТЬ" -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        app:cardBackgroundColor="#16213A"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#1F335A">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start|center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingVertical="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="↓ СКАЧАТЬ"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:textSize="8sp"
+                                android:textStyle="bold"
+                                android:textColor="#6A7DA0" />
+
+                            <TextView
+                                android:id="@+id/download_speed_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:layout_marginTop="0dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mb/s"
+                                android:textColor="#6A7DA0"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:textSize="8sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Карточка "ЗАГРУЗИТЬ" -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        app:cardBackgroundColor="#16213A"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#1F335A">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start|center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingVertical="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="↑ ЗАГРУЗИТЬ"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:textSize="8sp"
+                                android:textStyle="bold"
+                                android:textColor="#6A7DA0" />
+
+                            <TextView
+                                android:id="@+id/upload_speed_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:layout_marginTop="0dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mb/s"
+                                android:textColor="#6A7DA0"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
+                                android:textSize="8sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </LinearLayout>
-        </ScrollView>
+
+            <!-- Кнопка "Смотреть все серверы" — 50dp, marginTop 16dp -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_all_servers_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:minHeight="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:layout_marginTop="16dp"
+                android:text="Смотреть все серверы"
+                android:textSize="11sp"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_arrow_right"
+                app:iconGravity="end"
+                app:iconSize="16dp"
+                app:iconPadding="4dp"
+                android:backgroundTint="#1C2A45"
+                android:textColor="#FFFFFF"
+                android:elevation="0dp" />
+
+            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — marginTop 12dp (ближе к "Смотреть все") -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/search_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="45dp"
+                    android:minHeight="0dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Начать искать"
+                    android:textSize="10sp"
+                    app:cornerRadius="11dp"
+                    android:backgroundTint="#19243C"
+                    android:textColor="#A0B0D0"
+                    app:icon="@drawable/ic_search"
+                    app:iconSize="14dp"
+                    app:iconPadding="3dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/edit_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="45dp"
+                    android:minHeight="0dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:layout_marginStart="5dp"
+                    android:text="Редактировать"
+                    android:textSize="10sp"
+                    app:cornerRadius="11dp"
+                    android:backgroundTint="#19243C"
+                    android:textColor="#A0B0D0"
+                    app:icon="@drawable/ic_edit"
+                    app:iconSize="14dp"
+                    app:iconPadding="3dp" />
+            </LinearLayout>
+
+            <!-- Нижний отступ перед BottomNavigation -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+        </LinearLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
