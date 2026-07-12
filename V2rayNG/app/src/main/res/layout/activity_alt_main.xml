@@ -7,7 +7,6 @@
     android:background="#060D1A"
     tools:context=".ui.AltMainActivity">
 
-    <!-- ============ СЛОЙ СВЕЧЕНИЙ - LED ЭФФЕКТ (тёмно-синий фон) ============ -->
     <View
         android:layout_width="700dp"
         android:layout_height="700dp"
@@ -33,14 +32,12 @@
         android:alpha="0.35"
         android:background="@drawable/glow_blue_500" />
 
-    <!-- ============ ОСНОВНОЙ КОНТЕНТ (без скролла — фиксирован на 720×1612) ============ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@android:color/transparent">
 
-        <!-- Header -->
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -96,33 +93,29 @@
             android:background="#1A2A45"
             android:alpha="0.5" />
 
-        <!-- Контентная область — LinearLayout с weight=1, НЕ ScrollView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
-            android:paddingBottom="24dp"
+            android:paddingBottom="12dp"
             android:paddingTop="8dp"
             android:gravity="top">
 
-            <!-- ======== Central Circle с LED кольцами ======== -->
-            <!-- Весь контейнер (кольца + свечение + FAB) опущен ниже: 20dp → 30dp (×1.5) -->
+            <!-- FAB - НЕ ТРОГАЕМ, как просил -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp">
 
-                <!-- Внешнее темное кольцо с обводкой (180dp) -->
                 <View
                     android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_dark_circle" />
 
-                <!-- Тонкое синее свечение-кольцо поверх (180dp) -->
                 <View
                     android:layout_width="180dp"
                     android:layout_height="180dp"
@@ -130,7 +123,6 @@
                     android:background="@drawable/circle_border"
                     android:alpha="0.8" />
 
-                <!-- Свечение ПОД кнопкой (48dp) -->
                 <View
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -139,7 +131,6 @@
                     android:backgroundTint="#123B73"
                     android:alpha="0.35" />
 
-                <!-- Кнопка FAB (36dp, иконка 16dp) — внутри контейнера, без лишних отступов -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
                     android:layout_width="36dp"
@@ -153,12 +144,11 @@
                     app:borderWidth="0dp" />
             </FrameLayout>
 
-            <!-- ======== Server Card - Glass + LED stroke ======== -->
-            <!-- marginTop 24dp → 22dp (поднято на 1.1×) -->
+            <!-- Server Card - ПОДНЯТ ВВЕРХ: 22dp -> 10dp -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#16213A"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
@@ -240,13 +230,12 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ======== Statistic ======== -->
-            <!-- marginTop 6dp → 4dp (поднято на 1.5×) -->
+            <!-- Statistic - ПОДНЯТ ВВЕРХ: 4dp -> 2dp -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -278,7 +267,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- Карточка "СКАЧАТЬ" -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -332,7 +320,6 @@
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Карточка "ЗАГРУЗИТЬ" -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -388,7 +375,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Кнопка "Смотреть все серверы" — РАЗДВИНУТО ПО Y: marginTop 5dp → 20dp -->
+            <!-- Смотреть все серверы - РАЗДВИНУТ ПО Y и ПОДНЯТ: было 5dp -> теперь 12dp -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/view_all_servers_btn"
                 android:layout_width="match_parent"
@@ -396,7 +383,7 @@
                 android:minHeight="0dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="12dp"
                 android:text="Смотреть все серверы"
                 android:textSize="11sp"
                 app:cornerRadius="12dp"
@@ -408,12 +395,12 @@
                 android:textColor="#FFFFFF"
                 android:elevation="0dp" />
 
-            <!-- Нижние кнопки: "Начать искать" и "Редактировать" — РАЗДВИНУТО ПО Y: marginTop 7dp → 20dp -->
+            <!-- Начать искать / Редактировать - ТЕПЕРЬ ВИДНЫ, выровнены и подняты: 7dp -> 10dp -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/search_btn"
@@ -454,10 +441,9 @@
                     app:iconPadding="3dp" />
             </LinearLayout>
 
-            <!-- Нижний отступ перед BottomNavigation — РАЗДВИНУТО ПО Y: 16dp → 18dp -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="18dp" />
+                android:layout_height="8dp" />
 
         </LinearLayout>
 
@@ -465,7 +451,6 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
             android:background="#131D32"
             app:menu="@menu/menu_alt_bottom_nav"
             app:itemTextColor="@color/bottom_nav_color"
