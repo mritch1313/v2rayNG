@@ -147,7 +147,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
+                android:layout_marginTop="-13dp"
                 app:cardBackgroundColor="#16213A"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
@@ -178,7 +178,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginStart="8dp"
-                            android:text="Luna VPN — Netherlands"
+                            android:text="я пидорас"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -186,7 +186,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="214ms"
+                            android:text="666ms"
                             android:textSize="12sp"
                             android:textColor="#7A8BB0" />
                     </LinearLayout>
